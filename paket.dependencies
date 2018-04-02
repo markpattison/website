@@ -1,0 +1,13 @@
+source https://nuget.org/api/v2
+
+framework: auto-detect
+
+nuget Fable.Elmish.HMR
+nuget FAKE
+nuget FSharp.Core
+nuget Fable.Core
+nuget Fable.Elmish.React
+nuget Fable.Elmish.Browser
+nuget Fable.Elmish.Debugger
+
+clitool dotnet-fable
