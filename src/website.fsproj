@@ -7,13 +7,7 @@
     <Compile Include="Global.fs" />
     <!-- Info -->
     <Compile Include="Info/View.fs" />
-    <!-- Counter -->
-    <Compile Include="Counter/Types.fs" />
-    <Compile Include="Counter/State.fs" />
-    <Compile Include="Counter/View.fs" />
     <!-- Home -->
-    <Compile Include="Home/Types.fs" />
-    <Compile Include="Home/State.fs" />
     <Compile Include="Home/View.fs" />
     <!-- Navbar -->
     <Compile Include="Navbar/View.fs" />
