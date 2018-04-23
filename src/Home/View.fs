@@ -5,6 +5,8 @@ open Fable.Core.JsInterop
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 
+open Fulma
+
 let root =
   div
     [ ClassName "content" ]
@@ -20,20 +22,36 @@ let root =
             [ str "Fable" ]
           str "."
         ]
-      p
-        []
+      Tile.ancestor []
         [
-          strong [] [ str "Cricket: " ]
-          a
-            [ Href "http://mark-cricket.azurewebsites.net"; Target "_blank" ]
-            [ str "http://mark-cricket.azurewebsites.net" ]
-        ]
-      p
-        []
-        [
-          strong [] [ str "Fractals: " ]
-          a
-            [ Href "http://mark-fractal.azurewebsites.net"; Target "_blank" ]
-            [ str "http://mark-fractal.azurewebsites.net" ]
+          Tile.parent [ Tile.IsVertical ]
+            [
+              Tile.child [ Tile.Size Tile.Is4 ]
+                [
+                  a
+                    [ Href "/cricket"; Target "_blank" ]
+                    [
+                      Notification.notification
+                        [ Notification.Color IsSuccess ]
+                        [
+                          Heading.p [] [ str "Cricket" ]
+                          str """  A cricket "game" (or simulation)"""
+                        ]
+                    ]
+                ]
+              Tile.child [ Tile.Size Tile.Is4 ]
+                [
+                  a
+                    [ Href "/fractals"; Target "_blank" ]
+                    [
+                      Notification.notification
+                        [ Notification.Color IsInfo ]
+                        [
+                          Heading.p [] [ str "Fractals" ]
+                          str "Draw fractals!"
+                        ]
+                    ]
+                ]
+            ]
         ]
     ]
