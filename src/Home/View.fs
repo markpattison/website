@@ -29,7 +29,7 @@ let root =
               Tile.child [ Tile.Size Tile.Is4 ]
                 [
                   a
-                    [ Href "/cricket"; Target "_blank" ]
+                    [ Href "/cricket" ]
                     [
                       Notification.notification
                         [ Notification.Color IsSuccess ]
@@ -42,7 +42,7 @@ let root =
               Tile.child [ Tile.Size Tile.Is4 ]
                 [
                   a
-                    [ Href "/fractals"; Target "_blank" ]
+                    [ Href "/fractals" ]
                     [
                       Notification.notification
                         [ Notification.Color IsInfo ]
