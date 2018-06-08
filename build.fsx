@@ -2,7 +2,8 @@
 #r "packages/FAKE/tools/FakeLib.dll"
 
 open Fake
-open Fake.NpmHelper
+open Fake.Core.TargetOperators
+open Fake.IO.Globbing.Operators
 
 // Filesets
 let fableReferences = 
@@ -14,47 +15,33 @@ let dotnetcliVersion = "2.1.201"
 let mutable dotnetExePath = "dotnet"
 
 // Targets
-Target "InstallDotNetCore" (fun _ ->
+Fake.Core.Target.create "InstallDotNetCore" (fun _ ->
     dotnetExePath <- DotNetCli.InstallDotNetSDK dotnetcliVersion
 )
 
-Target "Clean" (fun _ ->
+Fake.Core.Target.create "Clean" (fun _ ->
     [ fableReferences ]
     |> Seq.concat
     |> Seq.iter (fun proj -> DotNetCli.RunCommand id ("clean " + proj))
 )
 
-// Target "UpdateVersionNumber" (fun _ ->
-//     let release =
-//         ReadFile "RELEASE_NOTES.md"
-//         |> ReleaseNotesHelper.parseReleaseNotes
-//     let revisionFromCI = environVarOrNone "BUILD_BUILDID"
-//     let version =
-//         match revisionFromCI with
-//         | None -> release.AssemblyVersion
-//         | Some s -> sprintf "%s build %s" release.AssemblyVersion s
-//     let versionFiles = !! "**/Version.fs"
-//     FileHelper.RegexReplaceInFilesWithEncoding @"VersionNumber = "".*""" (sprintf @"VersionNumber = ""%s""" version) System.Text.Encoding.UTF8 versionFiles
-//     TraceHelper.trace (sprintf @"Version = %s" version)
-// )
-
-Target "Restore" (fun _ ->
+Fake.Core.Target.create "Restore" (fun _ ->
     [ fableReferences ]
     |> Seq.concat
     |> Seq.iter (fun proj -> DotNetCli.Restore (fun p -> { p with Project = proj; ToolPath = dotnetExePath; AdditionalArgs = [ "--no-dependencies" ] }))
 )
 
-Target "NpmInstall" (fun _ ->
-    Npm (fun p ->
-        { p with Command = Install Standard; WorkingDirectory = fableDirectory })
+Fake.Core.Target.create "NpmInstall" (fun _ ->
+    Fake.JavaScript.Npm.install (fun p ->
+        { p with WorkingDirectory = fableDirectory })
 )
 
-Target "BuildFable" (fun _ ->
+Fake.Core.Target.create "BuildFable" (fun _ ->
     fableReferences
     |> Seq.iter (fun proj -> DotNetCli.RunCommand (fun p -> { p with WorkingDir = fableDirectory; ToolPath = dotnetExePath }) ("fable npm-build " + proj))
 )
 
-Target "RunFable" (fun _ ->
+Fake.Core.Target.create "RunFable" (fun _ ->
     fableReferences
     |> Seq.iter (fun proj -> DotNetCli.RunCommand (fun p -> { p with WorkingDir = fableDirectory; ToolPath = dotnetExePath }) ("fable npm-start " + proj))
 )
@@ -70,4 +57,4 @@ Target "RunFable" (fun _ ->
 "NpmInstall" ==> "RunFable"
 
 // start build
-RunTargetOrDefault "BuildFable"
+Fake.Core.Target.runOrDefault "BuildFable"
