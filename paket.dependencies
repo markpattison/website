@@ -12,3 +12,8 @@ nuget Fable.Elmish.Debugger
 
 clitool dotnet-fable
 nuget Fulma
+
+// TODO: remove
+github fsharp/FAKE src/app/Fake.DotNet.Cli/DotNet.fs
+nuget Newtonsoft.Json
+//

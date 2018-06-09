@@ -45,3 +45,7 @@ NUGET
     Microsoft.NETCore.Platforms (2.1)
     NETStandard.Library (2.0.3)
       Microsoft.NETCore.Platforms (>= 1.1)
+    Newtonsoft.Json (11.0.2)
+GITHUB
+  remote: fsharp/FAKE
+    src/app/Fake.DotNet.Cli/DotNet.fs (6ba51f5612a914e161be2a9b642907f75e28780f)
