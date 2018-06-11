@@ -1,9 +1,9 @@
 source https://nuget.org/api/v2
 
 framework: auto-detect
+storage: none
 
 nuget Fable.Elmish.HMR
-nuget FAKE
 nuget FSharp.Core
 nuget Fable.Core
 nuget Fable.Elmish.React
@@ -13,7 +13,11 @@ nuget Fable.Elmish.Debugger
 clitool dotnet-fable
 nuget Fulma
 
-// TODO: remove
-github fsharp/FAKE src/app/Fake.DotNet.Cli/DotNet.fs
-nuget Newtonsoft.Json
-//
+group Build
+    source https://nuget.org/api/v2
+
+    storage: none
+
+    nuget Fake.Core.Target
+    nuget Fake.DotNet.Cli
+    nuget Fake.JavaScript.Npm
