@@ -6,10 +6,9 @@ open Fake.IO.Globbing.Operators
 open Fake.DotNet
 
 // Filesets
-let fableReferences = 
-    !! "src/website.fsproj"
 
 let fableDirectory = "src"
+let fableReferences = !! "src/website.fsproj"
 
 let dotnetcliVersion = "2.1.300"
 
@@ -23,6 +22,7 @@ let inline withWorkDir wd =
     >> DotNet.Options.withWorkingDirectory wd
 
 // Targets
+
 Target.description "Cleaning directories"
 Target.create "Clean" (fun _ ->
     [ fableReferences ]
