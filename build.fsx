@@ -10,7 +10,7 @@ open Fake.DotNet
 let fableDirectory = "src"
 let fableReferences = !! "src/website.fsproj"
 
-let dotnetcliVersion = "2.1.300"
+let dotnetcliVersion = "2.2.103"
 
 let install = lazy DotNet.install (fun p ->
     { p with Version = DotNet.CliVersion.Version dotnetcliVersion })
