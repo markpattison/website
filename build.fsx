@@ -59,11 +59,11 @@ Target.create "NpmInstall" (fun _ ->
 )
 
 Target.description "Building Fable for production"
-Target.create "BuildFable" (fun _ ->
+Target.create "Build" (fun _ ->
     runTool npxTool "webpack-cli --config webpack.config.js -p" fableDirectory)
 
 Target.description "Building Fable for local run"
-Target.create "RunFable" (fun _ ->
+Target.create "Run" (fun _ ->
     runTool npxTool "webpack-dev-server --config webpack.config.js" fableDirectory)
 
 // Build order
@@ -74,9 +74,9 @@ open Fake.Core.TargetOperators
     ==> "Restore"
     ==> "NpmInstall"
 
-"NpmInstall" ==> "BuildFable"
-"NpmInstall" ==> "RunFable"
+"NpmInstall" ==> "Build"
+"NpmInstall" ==> "Run"
 
 // Start build
 
-Target.runOrDefault "BuildFable"
+Target.runOrDefault "Build"
