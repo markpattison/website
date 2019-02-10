@@ -11,13 +11,12 @@ nuget Fable.Elmish.Browser
 nuget Fable.Elmish.Debugger
 nuget Fulma
 
-clitool dotnet-fable
-
 group Build
     source https://nuget.org/api/v2
 
     storage: none
 
+    nuget FSharp.Core 4.3.4
     nuget Fake.Core.Target
     nuget Fake.DotNet.Cli
     nuget Fake.JavaScript.Npm

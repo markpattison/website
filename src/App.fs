@@ -16,6 +16,8 @@ importAll "../sass/main.sass"
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 
+open Elmish.HMR
+
 let menuItem label page currentPage =
     li
       [ ]
@@ -71,7 +73,6 @@ Program.mkProgram init update root
 |> Program.toNavigable (parseHash pageParser) urlUpdate
 #if DEBUG
 |> Program.withDebugger
-|> Program.withHMR
 #endif
 |> Program.withReact "elmish-app"
 |> Program.run

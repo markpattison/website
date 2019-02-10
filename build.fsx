@@ -21,6 +21,20 @@ let inline withWorkDir wd =
     DotNet.Options.lift install.Value
     >> DotNet.Options.withWorkingDirectory wd
 
+let npxTool =
+    match ProcessUtils.tryFindFileOnPath "npx.cmd" with
+    | Some t -> t
+    | None -> failwith "npx not found"
+
+let runTool cmd args workingDir =
+    let arguments = args |> String.split ' ' |> Arguments.OfArgs
+    Command.RawCommand (cmd, arguments)
+    |> CreateProcess.fromCommand
+    |> CreateProcess.withWorkingDirectory workingDir
+    |> CreateProcess.ensureExitCode
+    |> Proc.run
+    |> ignore
+
 // Targets
 
 Target.description "Cleaning directories"
@@ -46,17 +60,11 @@ Target.create "NpmInstall" (fun _ ->
 
 Target.description "Building Fable for production"
 Target.create "BuildFable" (fun _ ->
-    fableReferences
-    |> Seq.iter (fun proj ->
-        DotNet.exec (withWorkDir fableDirectory) "fable npm-build" proj |> ignore)
-)
+    runTool npxTool "webpack-cli --config webpack.config.js -p" fableDirectory)
 
 Target.description "Building Fable for local run"
 Target.create "RunFable" (fun _ ->
-    fableReferences
-    |> Seq.iter (fun proj ->
-        DotNet.exec (withWorkDir fableDirectory) "fable npm-start " proj |> ignore)
-)
+    runTool npxTool "webpack-dev-server --config webpack.config.js" fableDirectory)
 
 // Build order
 

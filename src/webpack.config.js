@@ -1,39 +1,36 @@
 var path = require("path");
 var webpack = require("webpack");
-var fableUtils = require("fable-utils");
 
 function resolve(filePath) {
     return path.join(__dirname, filePath)
 }
 
-var babelOptions = fableUtils.resolveBabelOptions({
-    presets: [["es2015", { "modules": false }]],
-    plugins: [["transform-runtime", {
-        "helpers": true,
-        // We don't need the polyfills as we're already calling
-        // cdn.polyfill.io/v2/polyfill.js in index.html
-        "polyfill": false,
-        "regenerator": false
-    }]]
-});
+var babelOptions = {
+    presets: [
+        ["@babel/preset-env", {
+            "targets": {
+                "browsers": ["last 2 versions"]
+            },
+            "modules": false,
+            "useBuiltIns": "usage"
+        }]
+    ],
+    plugins: ["@babel/plugin-transform-runtime"]
+};
 
 var isProduction = process.argv.indexOf("-p") >= 0;
 console.log("Bundling for " + (isProduction ? "production" : "development") + "...");
 
 module.exports = {
     devtool: isProduction ? undefined : "source-map",
-    entry: resolve('./src/website.fsproj'),
+    entry: resolve('./website.fsproj'),
     output: {
         filename: 'bundle.js',
-        path: resolve('./public'),
+        path: resolve('../public'),
     },
-    resolve: {
-        modules: [
-            "node_modules", resolve("./node_modules/")
-        ]
-    },
+    mode: isProduction ? "production" : "development",
     devServer: {
-        contentBase: resolve('./public'),
+        contentBase: resolve('../public'),
         port: 8080,
         hot: true,
         inline: true
