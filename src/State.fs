@@ -1,9 +1,9 @@
 module App.State
 
+open Browser
 open Elmish
-open Elmish.Browser.Navigation
-open Elmish.Browser.UrlParser
-open Fable.Import.Browser
+open Elmish.Navigation
+open Elmish.UrlParser
 open Global
 open Types
 
