@@ -45,10 +45,8 @@ let root model dispatch =
   div
     []
     [ div
-        [ ClassName "navbar-bg" ]
-        [ div
-            [ ClassName "container" ]
-            [ Navbar.View.root ] ]
+        []
+        [ Navbar.View.root ]
       div
         [ ClassName "section" ]
         [ div

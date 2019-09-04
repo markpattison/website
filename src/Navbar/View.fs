@@ -20,7 +20,7 @@ let navButton classy href faClass txt =
 
 let navButtons =
     span
-        [ ClassName "nav-item" ]
+        [ ClassName "navbar-item" ]
         [ div
             [ ClassName "field is-grouped" ]
             [ navButton "twitter" "https://twitter.com/mark_pattison" "fa-twitter" "Twitter"
@@ -28,12 +28,14 @@ let navButtons =
 
 let root =
     nav
-        [ ClassName "nav" ]
+        [ ClassName "navbar is-dark" ]
         [ div
-            [ ClassName "nav-left" ]
+            [ ClassName "navbar-brand" ]
             [ h1
-                [ ClassName "nav-item is-brand title is-4" ]
+                [ ClassName "navbar-item title is-4" ]
                 [ str "Mark's website" ] ]
           div
-            [ ClassName "nav-right" ]
-            [ navButtons ] ]
+            [ ClassName "navbar-menu" ]
+                [ div
+                    [ ClassName "navbar-end" ]
+                    [ navButtons ] ] ]
