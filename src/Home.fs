@@ -15,19 +15,26 @@ let root =
             [ str "Fable" ]
           str "." ]
       Tile.ancestor []
-        [ Tile.parent [ Tile.IsVertical ]
-            [ Tile.child
-                [ Tile.Size Tile.Is4 ]
+        [ Tile.parent
+            [ Tile.IsVertical; Tile.Size Tile.Is6 ]
+            [ Tile.child []
                 [ a
                     [ Href "/cricket" ]
                     [ Notification.notification
                         [ Notification.Color IsSuccess ]
                         [ Heading.p [] [ str "Cricket" ]
                           str """  A cricket "game" (or simulation)""" ] ] ]
-              Tile.child [ Tile.Size Tile.Is4 ]
+              Tile.child []
                 [ a
                     [ Href "/fractals" ]
                     [ Notification.notification
                         [ Notification.Color IsInfo ]
                         [ Heading.p [] [ str "Fractals" ]
-                          str "Draw fractals!" ] ] ] ] ] ]
+                          str "Draw fractals!" ] ] ]
+              Tile.child []
+                [ a
+                    [ Href "/fableelmishrecharts" ]
+                    [ Notification.notification
+                        [ Notification.Color IsWarning ]
+                        [ Heading.p [] [ str "FableElmishRecharts" ]
+                          str "An example app using Recharts" ] ] ] ] ] ]
