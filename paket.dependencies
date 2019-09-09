@@ -9,6 +9,7 @@ nuget Fable.Core
 nuget Fable.Elmish.React
 nuget Fable.Elmish.Browser
 nuget Fable.Elmish.Debugger
+nuget Fable.FontAwesome.Free
 nuget Fulma
 
 group Build

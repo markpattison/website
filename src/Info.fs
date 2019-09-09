@@ -1,14 +1,11 @@
 module Website.Info
 
 open Fable.React
-open Fable.React.Props
+open Fulma
 
 let root =
-  div
-    [ ClassName "content" ]
-    [ h1
-        [ ]
+  Content.content []
+    [ h1 []
         [ str "About this website" ]
-      p
-        [ ]
+      p []
         [ str "This template is a simple application build with Fable + Elmish + React." ] ]

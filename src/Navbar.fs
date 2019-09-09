@@ -1,41 +1,29 @@
 module Website.Navbar
 
+open Fable.FontAwesome
 open Fable.React
 open Fable.React.Props
+open Fulma
 
 let navButton classy href faClass txt =
-    p
-        [ ClassName "control" ]
-        [ a
-            [ ClassName (sprintf "button %s" classy)
-              Href href ]
-            [ span
-                [ ClassName "icon" ]
-                [ i
-                    [ ClassName (sprintf "fa %s" faClass) ]
-                    [ ] ]
-              span
-                [ ]
-                [ str txt ] ] ]
+  Control.div []
+    [ Button.a 
+        [ Button.CustomClass (sprintf "button %s" classy)
+          Button.Props [ Href href ] ]
+        [ Icon.icon [] [ Fa.i [ faClass ] [] ]
+          span [] [ str txt ] ] ]
 
 let navButtons =
-    span
-        [ ClassName "navbar-item" ]
-        [ div
-            [ ClassName "field is-grouped" ]
-            [ navButton "twitter" "https://twitter.com/mark_pattison" "fa-twitter" "Twitter"
-              navButton "github" "https://github.com/markpattison" "fa-github" "GitHub" ] ]
+  Navbar.Item.div []
+    [ Field.div
+        [ Field.IsGrouped ]
+        [ navButton "twitter" "https://twitter.com/mark_pattison" Fa.Brand.Twitter "Twitter"
+          navButton "github" "https://github.com/markpattison" Fa.Brand.Github "GitHub" ] ]
 
 let root =
-    nav
-        [ ClassName "navbar is-dark" ]
-        [ div
-            [ ClassName "navbar-brand" ]
-            [ h1
-                [ ClassName "navbar-item title is-4" ]
-                [ str "Mark's website" ] ]
-          div
-            [ ClassName "navbar-menu" ]
-                [ div
-                    [ ClassName "navbar-end" ]
-                    [ navButtons ] ] ]
+  Navbar.navbar [ Navbar.Color IsBlack ]
+    [ Navbar.Brand.div []
+        [ Navbar.Item.div []
+            [ Heading.h4 [ Heading.Modifiers [ Modifier.TextColor IsGreyLighter ] ] [ str "Mark's website" ] ] ]
+      Navbar.End.div []
+        [ navButtons ] ]

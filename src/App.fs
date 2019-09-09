@@ -3,8 +3,9 @@ module Website.View
 open Elmish
 open Elmish.Navigation
 open Elmish.UrlParser
-open Fable.Core
 open Fable.Core.JsInterop
+open Fable.React
+open Fulma
 
 open Website.Types
 open Website.State
@@ -12,53 +13,35 @@ open Website.Global
 
 importAll "../sass/main.sass"
 
-open Fable.React
-open Fable.React.Props
-
-open Elmish.HMR
-
 let menuItem label page currentPage =
-    li
-      [ ]
-      [ a
-          [ classList [ "is-active", page = currentPage ]
-            Href (toHash page) ]
-          [ str label ] ]
+  Menu.Item.li
+    [ Menu.Item.IsActive (page = currentPage)
+      Menu.Item.Props [ href page ] ]
+    [ str label ]
 
 let menu currentPage =
-  aside
-    [ ClassName "menu" ]
-    [ p
-        [ ClassName "menu-label" ]
+  Menu.menu []
+    [ Menu.label []
         [ str "General" ]
-      ul
-        [ ClassName "menu-list" ]
+      Menu.list []
         [ menuItem "Home" Home currentPage
-          menuItem "About" Page.About currentPage ] ]
+          menuItem "About" About currentPage ] ]
 
 let root model dispatch =
 
-  let pageHtml =
-    function
-    | Page.About -> Info.root
+  let pageHtml = function
+    | About -> Info.root
     | Home -> Home.root
 
-  div
-    []
-    [ div
-        []
-        [ Navbar.root ]
-      div
-        [ ClassName "section" ]
-        [ div
-            [ ClassName "container" ]
-            [ div
-                [ ClassName "columns" ]
-                [ div
-                    [ ClassName "column is-3" ]
+  div []
+    [ Navbar.root
+      Section.section []
+        [ Container.container []
+            [ Columns.columns []
+                [ Column.column
+                    [ Column.Width (Screen.All, Column.Is3) ]
                     [ menu model.currentPage ]
-                  div
-                    [ ClassName "column" ]
+                  Column.column []
                     [ pageHtml model.currentPage ] ] ] ] ]
 
 open Elmish.React
