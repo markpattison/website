@@ -1,10 +1,9 @@
-module Home.View
+module Website.Home
 
 open Fable.Core
 open Fable.Core.JsInterop
 open Fable.React
 open Fable.React.Props
-
 open Fulma
 
 let root =

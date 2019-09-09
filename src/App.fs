@@ -1,13 +1,14 @@
-module App.View
+module Website.View
 
 open Elmish
 open Elmish.Navigation
 open Elmish.UrlParser
 open Fable.Core
 open Fable.Core.JsInterop
-open Types
-open App.State
-open Global
+
+open Website.Types
+open Website.State
+open Website.Global
 
 importAll "../sass/main.sass"
 
@@ -39,14 +40,14 @@ let root model dispatch =
 
   let pageHtml =
     function
-    | Page.About -> Info.View.root
-    | Home -> Home.View.root
+    | Page.About -> Info.root
+    | Home -> Home.root
 
   div
     []
     [ div
         []
-        [ Navbar.View.root ]
+        [ Navbar.root ]
       div
         [ ClassName "section" ]
         [ div

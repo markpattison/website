@@ -1,4 +1,4 @@
-module Info.View
+module Website.Info
 
 open Fable.React
 open Fable.React.Props

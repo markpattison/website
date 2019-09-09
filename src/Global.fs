@@ -1,4 +1,4 @@
-module Global
+module Website.Global
 
 type Page =
   | Home

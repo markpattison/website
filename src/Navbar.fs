@@ -1,4 +1,4 @@
-module Navbar.View
+module Website.Navbar
 
 open Fable.React
 open Fable.React.Props

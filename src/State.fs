@@ -1,11 +1,12 @@
-module App.State
+module Website.State
 
 open Browser
 open Elmish
 open Elmish.Navigation
 open Elmish.UrlParser
-open Global
-open Types
+
+open Website.Global
+open Website.Types
 
 let pageParser: Parser<Page->Page,Page> =
   oneOf [

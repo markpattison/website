@@ -1,6 +1,6 @@
-module App.Types
+module Website.Types
 
-open Global
+open Website.Global
 
 type Msg =
   | Nothing
