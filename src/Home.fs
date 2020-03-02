@@ -21,16 +21,23 @@ let root =
                 [ a
                     [ Href "/cricket" ]
                     [ Notification.notification
-                        [ Notification.Color IsSuccess ]
+                        [ Notification.Color IsLink ]
                         [ Heading.p [] [ str "Cricket" ]
                           str """  A cricket "game" (or simulation)""" ] ] ]
               Tile.child []
                 [ a
                     [ Href "/fractals" ]
                     [ Notification.notification
-                        [ Notification.Color IsInfo ]
+                        [ Notification.Color IsDanger ]
                         [ Heading.p [] [ str "Fractals" ]
                           str "Draw fractals!" ] ] ]
+              Tile.child []
+                [ a
+                    [ Href "/reversi" ]
+                    [ Notification.notification
+                        [ Notification.Color IsSuccess ]
+                        [ Heading.p [] [ str "Reversi" ]
+                          str "Play Reversi (otherwise known as Othello)" ] ] ]
               Tile.child []
                 [ a
                     [ Href "/fableelmishrecharts" ]
