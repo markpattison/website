@@ -40,6 +40,13 @@ let root =
                           str "Play Reversi (otherwise known as Othello)" ] ] ]
               Tile.child []
                 [ a
+                    [ Href "/mapdemo" ]
+                    [ Notification.notification
+                        [ Notification.Color IsPrimary ]
+                        [ Heading.p [] [ str "Map Demo" ]
+                          str "Walkthrough visualising data on a map" ] ] ]
+              Tile.child []
+                [ a
                     [ Href "/fableelmishrecharts" ]
                     [ Notification.notification
                         [ Notification.Color IsWarning ]
